@@ -105,6 +105,12 @@ server.get('/temperatura', (req,resp)=>{
     }
 })
 
+server.get('/tabuada' , (req , resp) => {
+    const {valor} = Number(req.params);
+
+})
+
+
 server.get('/DIA2/corprimaria/:cor' , (req,resp) =>{
     try {
         const cor = req.params.cor;
@@ -138,6 +144,23 @@ server.post('/DIA2/ingressoCinema' , (req,resp) =>{
                 })
             }else{
                 total (qtdMeia * 14.25) + (qtdint * 28.5)
+            }
+        }
+    } catch (err) {
+        resp.status(404).send({
+            erro: err.message
+        })
+    }
+})
+
+server.get('/DIA2/freqCaracter/:texto/:caracter' , (req , resp) =>{
+    try {
+        const {texto , caracter} =req.params;
+        for(let count = 0; count < texto.length; count++){
+            if(texto[count] = caracter){
+                resp.send({
+                    qtd : count
+                })
             }
         }
     } catch (err) {
